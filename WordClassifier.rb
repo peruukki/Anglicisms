@@ -4,22 +4,25 @@ class WordClassifier
   include Helpers
   
   CurrentDir = File.dirname(__FILE__) + '/'
+  FileNameBody = 'words.'
+
+  Back = 'b'
   
-  Yes = "yes"
-  No = "no"
-  Maybe = "maybe"
-  WordClasses = [ Yes, No, Maybe ]
-  
-  def initialize()
+  def initialize(ignore_class = nil)
+    @word_classes = []
+    @ignore_class = ignore_class
     @file_names = Hash.new
-    WordClasses.each { |word_class| @file_names[word_class] = "words." + word_class }
-  
     @classified = Hash.new
-    WordClasses.each { |word_class| @classified[word_class] = get_words(@file_names[word_class]) }
+  end
+
+  def add_class(word_class)
+    @word_classes.push word_class
+    @file_names[word_class] = FileNameBody + word_class
+    @classified[word_class] = get_words(@file_names[word_class])
   end
 
   def get_words(file_name)
-    read_words_from_file(file_name, CurrentDir)
+    read_words_from_file(file_name)
   end
   private :get_words
 
@@ -37,7 +40,7 @@ class WordClassifier
   end
   
   def classify(word, word_class)
-    raise "Unknown word class '#{word_class}'" unless WordClasses.include?(word_class)
+    raise "Unknown word class '#{word_class}'" unless @word_classes.include?(word_class)
     @classified[word_class].push(word)
   end
   
@@ -51,16 +54,17 @@ class WordClassifier
   end
   
   def has_class?(word, word_class)
-    raise "Unknown word class '#{word_class}'" unless WordClasses.include?(word_class)
+    raise "Unknown word class '#{word_class}'" unless @word_classes.include?(word_class)
     @classified[word_class].include?(word)
   end
   
   def ignore?(word)
-    has_class?(word, No)
+    return false if @ignore_class.nil?
+    has_class?(word, @ignore_class)
   end
 
   def save()
-    WordClasses.each do |word_class|
+    @word_classes.each do |word_class|
       write_words_to_file(@classified[word_class], @file_names[word_class])
     end
   end

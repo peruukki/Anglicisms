@@ -1,7 +1,7 @@
 ﻿require 'io/console'
 
 CurrentDir = File.dirname(__FILE__) + '/'
-require File.expand_path(CurrentDir + 'WordClassifier')
+require File.expand_path(CurrentDir + 'WordClassifierYesNoMaybe')
 require File.expand_path(CurrentDir + 'Helpers')
 
 include Helpers
@@ -13,13 +13,8 @@ end
 
 # Main
 
-Yes = 'y'
-No = 'n'
-Maybe = 'm'
-Back = 'b'
-
 dirs = get_cmd_line_args
-classifier = WordClassifier.new
+classifier = WordClassifierYesNoMaybe.new
 quit = false
 
 dirs.each do |directory|
@@ -33,27 +28,27 @@ dirs.each do |directory|
     while index < words.length do
       word = words[index]
       unless classifier.classified?(word)
+        known_choice = false
         print "Classify word '#{word}': (y)es / (n)o / (m)aybe / (b)ack: "
         choice = STDIN.getch
         puts choice
         
-        case choice
-        when Yes then classifier.classify(word, WordClassifier::Yes)
-        when No then classifier.classify(word, WordClassifier::No)
-        when Maybe then classifier.classify(word, WordClassifier::Maybe)
-        when Back
-          if previous_indexes.empty?
-            puts "No previous word"
+        known_choice = classifier.classify_word(word, choice)
+        unless known_choice
+          if (choice == WordClassifierYesNoMaybe::Back)
+            if previous_indexes.empty?
+              puts "No previous word"
+            else
+              index = previous_indexes.pop
+              previous_word = words[index]
+              puts "Going back to previous word '#{previous_word}'"
+              classifier.unclassify(previous_word)
+            end
+            next
           else
-            index = previous_indexes.pop
-            previous_word = words[index]
-            puts "Going back to previous word '#{previous_word}'"
-            classifier.unclassify(previous_word)
+            puts "Saving and exiting"
+            quit = true
           end
-          next
-        else
-          puts "Saving and exiting"
-          quit = true
         end
         previous_indexes.push index
         classifier.save if previous_indexes.length % 5 == 0
