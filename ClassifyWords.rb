@@ -29,13 +29,13 @@ dirs.each do |directory|
       word = words[index]
       unless classifier.classified?(word)
         known_choice = false
-        print "Classify word '#{word}': (y)es / (n)o / (m)aybe / (b)ack: "
+        classifier.prompt_message(word)
         choice = STDIN.getch
         puts choice
         
         known_choice = classifier.classify_word(word, choice)
         unless known_choice
-          if (choice == WordClassifierYesNoMaybe::Back)
+          if (choice == WordClassifierYesNoMaybe::Back.input_char)
             if previous_indexes.empty?
               puts "No previous word"
             else
