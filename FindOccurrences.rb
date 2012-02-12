@@ -15,10 +15,9 @@ def get_cmd_line_args()
   raise "Arguments: <word> <surrounding word count> <directory1> [<directory2> ...]" if ARGV.length < 3
 
   # The command line passes arguments ANSI encoded, convert them to UTF-8
-  search_word = Helpers::to_utf8(ARGV[0])
+  search_word = to_utf8(ARGV[0])
   surround_count = ARGV[1].to_i
-  dirs = []
-  (2..ARGV.length - 1).each { |i| dirs.push Helpers::to_utf8(ARGV[i]) }
+  dirs = get_dirs_from_cmd_line_args(ARGV[2..-1])
 
   # Command line argument validation
   raise "Surrounding word count must be larger than zero" if surround_count <= 0
@@ -27,7 +26,7 @@ def get_cmd_line_args()
 end
 
 def get_next_word(text)
-  if ((not text.nil?) and (text =~ Helpers::WordPattern))
+  if ((not text.nil?) and (text =~ WordPattern))
     word = $1
     punctuation = ($2.nil? ? "" : $2)
     position = $'

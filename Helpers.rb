@@ -11,7 +11,14 @@
   def to_utf8(ansi_string)
     String.new(ansi_string).force_encoding('windows-1252').encode('utf-8')
   end
-  
+
+  def get_dirs_from_cmd_line_args(arg_dirs)
+    # The command line passes arguments ANSI encoded, convert them to UTF-8
+    dirs = []
+    arg_dirs.each { |dir_path| dirs.push to_utf8(dir_path).gsub('\\', '/') }
+    dirs
+  end
+
   def match?(w1, w2)
     return true if (w1 == w2 + 's')
     return true if ((w1 =~ /^(.+)ale?$/) and (w2 =~ /^#{$1}aux$/))

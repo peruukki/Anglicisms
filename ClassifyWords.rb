@@ -7,13 +7,8 @@ require File.expand_path(CurrentDir + 'Helpers')
 include Helpers
 
 def get_cmd_line_args()
-  # Command line argument count check
   raise "Arguments: <directory1> [<directory2> ...]" if ARGV.length < 1
-
-  # The command line passes arguments ANSI encoded, convert them to UTF-8
-  dirs = []
-  (0..ARGV.length - 1).each { |i| dirs.push to_utf8(ARGV[i]) }
-  dirs
+  get_dirs_from_cmd_line_args(ARGV)
 end
 
 # Main
