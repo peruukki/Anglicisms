@@ -1,4 +1,5 @@
-﻿require File.expand_path(CurrentDir + 'Helpers')
+﻿require 'io/console'
+require File.expand_path(CurrentDir + 'Helpers')
 require File.expand_path(CurrentDir + 'ClassificationChoice')
 
 class WordClassifier
@@ -26,6 +27,46 @@ class WordClassifier
     read_words_from_file(file_name)
   end
   private :get_words
+
+  def classify_words_in_file(file_name)
+    quit = false
+    puts "Classifying words in file " + file_name
+    words = read_words_from_file(file_name)
+
+    index = 0
+    previous_indexes = []
+    while index < words.length do
+      word = words[index]
+      unless classified?(word)
+        prompt_message(word)
+        choice = STDIN.getch
+        puts choice
+
+        known_choice = classify_word(word, choice)
+        unless known_choice
+          if (choice == Back.input_char)
+            if previous_indexes.empty?
+              puts "No previous word"
+            else
+              index = previous_indexes.pop
+              previous_word = words[index]
+              puts "Going back to previous word '#{previous_word}'"
+              unclassify(previous_word)
+            end
+            next
+          else
+            puts "Saving and exiting"
+            quit = true
+          end
+        end
+        previous_indexes.push index
+        save if previous_indexes.length % 5 == 0
+      end
+      index += 1
+      break if quit
+    end
+    quit
+  end
 
   def classified?(word)
     @classified.each_value { |words| return true if words.include?(word) }

@@ -20,42 +20,7 @@ quit = false
 dirs.each do |directory|
   puts "Analyzing files in directory " + directory
   Dir["#{directory}/*.txt"].each do |file_name|
-    puts "Classifying words in article " + file_name
-    words = read_words_from_file(file_name)
-
-    index = 0
-    previous_indexes = []
-    while index < words.length do
-      word = words[index]
-      unless classifier.classified?(word)
-        known_choice = false
-        classifier.prompt_message(word)
-        choice = STDIN.getch
-        puts choice
-        
-        known_choice = classifier.classify_word(word, choice)
-        unless known_choice
-          if (choice == WordClassifierYesNoMaybe::Back.input_char)
-            if previous_indexes.empty?
-              puts "No previous word"
-            else
-              index = previous_indexes.pop
-              previous_word = words[index]
-              puts "Going back to previous word '#{previous_word}'"
-              classifier.unclassify(previous_word)
-            end
-            next
-          else
-            puts "Saving and exiting"
-            quit = true
-          end
-        end
-        previous_indexes.push index
-        classifier.save if previous_indexes.length % 5 == 0
-      end
-      index += 1
-      break if quit
-    end
+    quit = classifier.classify_words_in_file(file_name)
     break if quit
   end
   break if quit
