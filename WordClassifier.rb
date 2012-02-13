@@ -53,7 +53,7 @@ class WordClassifier
               puts "Going back to previous word '#{previous_word}'"
               unclassify(previous_word)
             end
-            next
+            redo
           else
             puts "Saving and exiting"
             quit = true
