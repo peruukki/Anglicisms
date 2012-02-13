@@ -21,7 +21,8 @@
 
   def match?(w1, w2)
     return true if (w1 == w2 + 's')
-    return true if ((w1 =~ /^(.+)ale?$/) and (w2 =~ /^#{$1}aux$/))
+    return true if ((w1 =~ /^(.+)if$/) and (w2 =~ /^#{$1}ive$/))
+    return true if ((w1 =~ /^(.+)al(e|es)?$/) and (w2 =~ /^#{$1}aux$/))
     if (w1 =~ /^(.+)er$/)
       body = $1
       return true if (w2 =~ /^#{body}ée?s?$/)
