@@ -1,5 +1,5 @@
 ﻿CurrentDir = File.dirname(__FILE__) + '/'
-require File.expand_path(CurrentDir + 'WordClassifier')
+require File.expand_path(CurrentDir + 'WordClassifierYesNoMaybe')
 require File.expand_path(CurrentDir + 'Helpers')
 
 include Helpers
@@ -22,7 +22,7 @@ end
 # Main
 
 dirs = get_cmd_line_args
-classifier = WordClassifier.new
+classifier = WordClassifierYesNoMaybe.new
 
 dirs.each do |directory|
   puts "Analyzing files in directory " + directory
