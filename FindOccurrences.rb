@@ -25,15 +25,6 @@ def get_cmd_line_args()
   [search_word, surround_count, dirs]
 end
 
-def get_next_word(text)
-  if ((not text.nil?) and (text =~ WordPattern))
-    word = $1
-    punctuation = ($2.nil? ? "" : $2)
-    position = $'
-    return [word, punctuation, position]
-  end
-  return [nil, nil, nil]
-end
 
 #
 # Main

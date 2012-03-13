@@ -19,6 +19,16 @@
     dirs
   end
 
+  def get_next_word(text)
+    if ((not text.nil?) and (text =~ WordPattern))
+      word = $1
+      punctuation = ($2.nil? ? "" : $2)
+      position = $'
+      return [word, punctuation, position]
+    end
+    return [nil, nil, nil]
+  end
+
   def match?(w1, w2)
     return true if (w1 == w2 + 's')
     return true if ((w1 =~ /^(.+)if$/) and (w2 =~ /^#{$1}ive$/))
