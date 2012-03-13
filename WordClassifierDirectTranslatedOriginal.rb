@@ -11,4 +11,9 @@ class WordClassifierDirectTranslatedOriginal < WordClassifier
     super([Direct, Translated, Original])
   end
 
+  def self.get_interesting_word_files(directory = '.')
+    [directory + '/' + FileNameBody + Direct.class_name,
+     directory + '/' + FileNameBody + Translated.class_name]
+  end
+
 end
