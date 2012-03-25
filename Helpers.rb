@@ -67,7 +67,32 @@
     false
   end
 
-  def combine_same_words(sorted_words, freqs, article_counts)
+  def combine_same_words(words)
+    # Create a copy so we don't modify the given array
+    words = words.dup
+    combined_words = Hash.new
+    i = 0
+    while i < words.length
+      # Use downcase to make the output easier on the eyes
+      word1 = words[i].downcase
+      combined_words[word1] = word1
+      j = i + 1
+      while j < words.length
+        word2 = words[j].downcase
+        if same_word?(word1, word2)
+          # Only show other differences than different case
+          combined_words[word1] += ", " + word2 unless word1 == word2
+          words.delete_at(j)
+        else
+          j += 1
+        end
+      end
+      i += 1
+    end
+    combined_words.values
+  end
+
+  def combine_same_words_with_counts(sorted_words, freqs, article_counts)
     same_words = Hash.new
     sorted_words.each.with_index do |entry1, i|
       word1, count1 = entry1

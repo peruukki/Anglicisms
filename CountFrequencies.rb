@@ -42,7 +42,7 @@ dirs.each do |directory|
   sorted_words = sort_frequencies(total_freqs)
   puts "Combining same words"
   time = Time.now
-  same_words = combine_same_words(sorted_words, total_freqs, article_counts)
+  same_words = combine_same_words_with_counts(sorted_words, total_freqs, article_counts)
   puts "Combining took #{Time.now - time} seconds"
   puts "Analyzing total counts"
   write_to_file("#{directory}/all.freq", sort_frequencies(total_freqs), article_counts, same_words)
