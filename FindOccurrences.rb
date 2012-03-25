@@ -60,7 +60,7 @@ dirs.each do |directory|
       end
       
       if ((not recent_words[word_index].nil?) and
-          (same_word?(recent_words[word_index][0], search_word)))
+          (recent_words[word_index][0].downcase == search_word.downcase))
         occurrence_count += 1
         print "   ... "
         recent_words.each { |recent_word| print recent_word[0] + recent_word[1] unless recent_word.nil? }
