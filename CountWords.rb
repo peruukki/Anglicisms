@@ -22,7 +22,7 @@ dirs.each do |directory|
     word = ""
     file_word_count = 0
     while not word.nil?
-      word, punctuation, position = get_next_word(position)
+      word, punctuation, position = get_next_word(position, word, punctuation)
       file_word_count += 1 unless word.nil?
     end
     puts "#{file_word_count} words in file #{file_name}"

@@ -3,6 +3,8 @@
   Punctuation = '«»\'’:;,!…\?\*\(\)\[\]\.\s'
   SplitPattern = /[#{Punctuation}]+/
   WordPattern = /([^#{Punctuation}]+)([#{Punctuation}]+)?/
+  WordsWithApostrophe = ["d'abord", "d'affilée", "d'ailleurs", "d'autres",
+                         "d'habitude", "d'ici", "d'où", "l'un"]
 
   def pause()
     exit if STDIN.getch == 'q'
@@ -19,11 +21,23 @@
     dirs
   end
 
-  def get_next_word(text)
+  def word_with_apostrophe?(word)
+    if WordsWithApostrophe.include?(word)
+      puts "Word with apostrophe: " + word
+      return true
+    end
+    false
+  end
+
+  def get_next_word(text, prev_word = nil, prev_punctuation = nil)
     if ((not text.nil?) and (text =~ WordPattern))
       word = $1
       punctuation = ($2.nil? ? "" : $2)
       position = $'
+      if ((prev_punctuation == "'") and
+          (word_with_apostrophe?(prev_word + "'" + word)))
+        return get_next_word(position, word, punctuation)
+      end
       return [word, punctuation, position]
     end
     return [nil, nil, nil]
