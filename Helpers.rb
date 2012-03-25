@@ -73,20 +73,20 @@
       word1, count1 = entry1
       next if freqs[word1] == 0
       for j in (i + 1)..(sorted_words.length - 1)
-      word2, count2 = sorted_words[j]
-      next if freqs[word2] == 0
-      if same_word?(word1, word2)
-        if same_words[word1].nil?
-        same_words[word1] = ""
-      else
-        same_words[word1] += ", "
-      end
+        word2, count2 = sorted_words[j]
+        next if freqs[word2] == 0
+        if same_word?(word1, word2)
+          if same_words[word1].nil?
+            same_words[word1] = ""
+          else
+            same_words[word1] += ", "
+          end
           same_words[word1] += word2 + " " + freqs[word2].to_s +
-                           " (" + article_counts[word2].to_s + ")"
-        freqs[word1] += freqs[word2]
-      freqs.delete(word2)
+                               " (" + article_counts[word2].to_s + ")"
+          freqs[word1] += freqs[word2]
+          freqs.delete(word2)
+        end
       end
-    end
     end
     same_words
   end
