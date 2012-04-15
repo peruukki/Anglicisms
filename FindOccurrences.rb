@@ -12,7 +12,10 @@ include Helpers
 
 def get_cmd_line_args()
   # Command line argument count check
-  raise "Arguments: <word> <surrounding word count> <directory1> [<directory2> ...]" if ARGV.length < 3
+  if ARGV.length < 3
+    puts "\nArguments: <word> <surrounding word count> <directory1> [<directory2> ...]"
+    exit
+  end
 
   # The command line passes arguments ANSI encoded, convert them to UTF-8
   search_word = to_utf8(ARGV[0])
@@ -20,7 +23,10 @@ def get_cmd_line_args()
   dirs = get_dirs_from_cmd_line_args(ARGV[2..-1])
 
   # Command line argument validation
-  raise "Surrounding word count must be larger than zero" if surround_count <= 0
+  if surround_count <= 0
+    puts "\nSurrounding word count must be larger than zero, got #{surround_count}"
+    exit
+  end
   
   [search_word, surround_count, dirs]
 end

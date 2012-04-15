@@ -7,7 +7,10 @@ require File.expand_path(CurrentDir + 'Helpers')
 include Helpers
 
 def get_cmd_line_args()
-  raise "Arguments: <directory1> [<directory2> ...]" if ARGV.length < 1
+  if ARGV.length < 1
+    puts "\nArguments: <directory1> [<directory2> ...]"
+    exit
+  end
   get_dirs_from_cmd_line_args(ARGV)
 end
 
