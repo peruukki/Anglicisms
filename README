@@ -1,0 +1,16 @@
+These are Ruby scripts I created for analyzing the text corpus in my bachelor's thesis.
+
+Short description of each script:
+
+- ClassificationChoice.rb
+- ClassifyInterestingWords.rb
+- ClassifyLoanWords.rb
+- CountFrequencies.rb
+- CountWords.rb
+- FilterUniqueWords.rb
+- FindOccurrences.rb
+- Helpers.rb
+- WordClass.rb
+- WordClassifier.rb
+- WordClassifierDirectTranslatedOriginal.rb
+- WordClassifierYesNoMaybe.rb
