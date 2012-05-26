@@ -1,4 +1,7 @@
-﻿require 'io/console'
+﻿# This script iterates the words in the text files in given directories and
+# asks the user if the words are interesting for further analysis.
+
+require 'io/console'
 
 CurrentDir = File.dirname(__FILE__) + '/'
 require File.expand_path(CurrentDir + 'WordClassifierYesNoMaybe')

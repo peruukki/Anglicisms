@@ -1,16 +1,21 @@
-These are Ruby scripts I created for analyzing the text corpus in my bachelor's thesis.
+﻿This repository contains Ruby scripts that can assist in analyzing words in plain text files containing French text.
 
-Short description of each script:
+Here is a short description of what each script can be used for. The other files are used by the scripts.
 
-- ClassificationChoice.rb
 - ClassifyInterestingWords.rb
+  Classify words based on whether they are interesting for further analysis.
+
 - ClassifyLoanWords.rb
+  Classify words based on what kind of loan words they are.
+
 - CountFrequencies.rb
+  Count word frequencies in text files and the total frequencies in directories.
+
 - CountWords.rb
+  Count the number of words in text files and the total counts in directories.
+
 - FilterUniqueWords.rb
+  Filter out different forms of a word to obtain a list of unique words.
+
 - FindOccurrences.rb
-- Helpers.rb
-- WordClass.rb
-- WordClassifier.rb
-- WordClassifierDirectTranslatedOriginal.rb
-- WordClassifierYesNoMaybe.rb
+  Show the occurrences of a word in their contexts in text files.

@@ -1,4 +1,7 @@
-﻿require 'io/console'
+﻿# This class provides functionality to classify words to word classes.
+# It is meant to be extended by subclasses that define the word classes.
+
+require 'io/console'
 require File.expand_path(CurrentDir + 'Helpers')
 require File.expand_path(CurrentDir + 'ClassificationChoice')
 

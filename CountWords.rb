@@ -1,4 +1,7 @@
-﻿CurrentDir = File.dirname(__FILE__) + '/'
+﻿# This script counts the words in each text file and the total word count
+# in given directories.
+
+CurrentDir = File.dirname(__FILE__) + '/'
 require File.expand_path(CurrentDir + 'Helpers')
 
 include Helpers

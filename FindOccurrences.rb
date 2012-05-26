@@ -1,14 +1,13 @@
-﻿require 'io/console'
+﻿# This script shows the occurrences of a given word in the text files in given directories.
+# You can specify the number of words surrounding the occurrence to show.
+
+require 'io/console'
 
 CurrentDir = File.dirname(__FILE__) + '/'
 require File.expand_path(CurrentDir + 'WordClassifier')
 require File.expand_path(CurrentDir + 'Helpers')
 
 include Helpers
-
-#
-# Methods
-#
 
 def get_cmd_line_args()
   # Command line argument count check

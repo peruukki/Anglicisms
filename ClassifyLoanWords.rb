@@ -1,4 +1,11 @@
-﻿require 'io/console'
+﻿# This script iterates the words in the text files in the given directories
+# and asks the user if the words have been loaned from English.
+
+# Only words that have been classified as (possibly) interesting are taken
+# into account. The files containing interesting words are read from the
+# current directory.
+
+require 'io/console'
 
 CurrentDir = File.dirname(__FILE__) + '/'
 require File.expand_path(CurrentDir + 'WordClassifierDirectTranslatedOriginal')

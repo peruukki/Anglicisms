@@ -1,4 +1,10 @@
-﻿CurrentDir = File.dirname(__FILE__) + '/'
+﻿# This script counts the word frequencies in the text files in the given directories.
+
+# Only words that have been classified as (possibly) interesting are taken
+# into account. The files containing interesting words are read from the
+# current directory.
+
+CurrentDir = File.dirname(__FILE__) + '/'
 require File.expand_path(CurrentDir + 'WordClassifierYesNoMaybe')
 require File.expand_path(CurrentDir + 'Helpers')
 

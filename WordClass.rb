@@ -1,3 +1,5 @@
+﻿# This class represents a word class usable in scripts that classify words.
+
 require File.expand_path(CurrentDir + 'ClassificationChoice')
 
 class WordClass < ClassificationChoice

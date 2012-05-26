@@ -1,4 +1,7 @@
-﻿require 'io/console'
+﻿# This script reads the (possibly) interesting words from the given directory
+# and filters out the different forms of a word so that only unique words remain.
+
+require 'io/console'
 
 CurrentDir = File.dirname(__FILE__) + '/'
 require File.expand_path(CurrentDir + 'WordClassifierDirectTranslatedOriginal')

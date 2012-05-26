@@ -1,3 +1,6 @@
+﻿# This class represents a classification choice available for the user in
+# scripts that classify words.
+
 class ClassificationChoice
   attr_reader :input_char, :description
 

@@ -1,4 +1,6 @@
-﻿module Helpers
+﻿# This module contains utility methods and constants used by several classes.
+
+module Helpers
 
   Punctuation = '«»\'’:;,!…\?\*\(\)\[\]\.\s'
   SplitPattern = /[#{Punctuation}]+/
