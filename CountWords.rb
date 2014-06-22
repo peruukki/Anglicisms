@@ -34,7 +34,7 @@ dirs.each do |directory|
     puts "#{file_word_count} words in file #{file_name}"
     total_word_count += file_word_count
   end
-  
+
   puts "#{total_word_count} words in directory #{directory}"
   summary_word_counts.push [total_word_count, directory]
 end

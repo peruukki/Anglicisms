@@ -26,7 +26,7 @@ def get_cmd_line_args()
     puts "\nSurrounding word count must be larger than zero, got #{surround_count}"
     exit
   end
-  
+
   [search_word, surround_count, dirs]
 end
 
@@ -47,15 +47,15 @@ dirs.each do |directory|
   Dir[directory + "/*.txt"].each do |file_name|
     recent_words = Array.new((2 * surround_count) + 1)
     word_index = surround_count
-    
+
     puts "Analyzing file " + file_name
     position = read_file(file_name).gsub(/\n/, " ")
     word = ""
     trailing_word_count = surround_count
-    
+
     until trailing_word_count == 0 do
       word, punctuation, position = get_next_word(position)
-      recent_words.shift    
+      recent_words.shift
       if word.nil?
         # Add enough trailing words to take the very last words into account too
         trailing_word_count -=1
@@ -63,7 +63,7 @@ dirs.each do |directory|
       else
         recent_words.push [word, punctuation]
       end
-      
+
       if ((not recent_words[word_index].nil?) and
           (recent_words[word_index][0].downcase == search_word.downcase))
         occurrence_count += 1
