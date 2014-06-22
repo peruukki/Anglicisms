@@ -1,54 +1,142 @@
 <!DOCTYPE html>
 <html>
+
   <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Anglicisms : Ruby scripts I created for investigating the text corpus in my bachelor&#39;s thesis where I analyzed anglicisms in French articles." />
 
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
-    <title>Anglicisms by peruukki</title>
+    <title>Anglicisms</title>
   </head>
 
   <body>
 
-    <header>
-      <div class="container">
-        <h1>Anglicisms</h1>
-        <h2>Ruby scripts I created for investigating the text corpus in my bachelor's thesis where I analyzed anglicisms in French articles.</h2>
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/peruukki/Anglicisms">View on GitHub</a>
 
-        <section id="downloads">
-          <a href="https://github.com/peruukki/Anglicisms/zipball/master" class="btn">Download as .zip</a>
-          <a href="https://github.com/peruukki/Anglicisms/tarball/master" class="btn">Download as .tar.gz</a>
-          <a href="https://github.com/peruukki/Anglicisms" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
-        </section>
-      </div>
-    </header>
+          <h1 id="project_title">Anglicisms</h1>
+          <h2 id="project_tagline">Ruby scripts I created for investigating the text corpus in my bachelor&#39;s thesis where I analyzed anglicisms in French articles.</h2>
 
-    <div class="container">
-      <section id="main_content">
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/peruukki/Anglicisms/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/peruukki/Anglicisms/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
         <p>This repository contains Ruby scripts that can assist in analyzing words in plain text files containing French text.</p>
 
-<p>Here is a short description of what each script can be used for. The other files are used by the scripts.</p>
+<p>Here is a short description of what each script can be used for.</p>
 
-<ul>
-<li><p>ClassifyInterestingWords.rb: Classify words based on whether they are interesting for further analysis.
-<img src="http://peruukki.github.com/Anglicisms/images/screenshot-classify-interesting.png" alt="ClassifyInterestingWords screenshot"></p></li>
-<li><p>ClassifyLoanWords.rb: Classify words based on what kind of loan words they are.
-<img src="http://peruukki.github.com/Anglicisms/images/screenshot-classify-loan.png" alt="ClassifyLoanWords screenshot"></p></li>
-<li><p>CountFrequencies.rb: Count word frequencies in text files and the total frequencies in directories.
-<img src="http://peruukki.github.com/Anglicisms/images/screenshot-count-frequencies.png" alt="CountFrequencies screenshot"></p></li>
-<li><p>CountWords.rb: Count the number of words in text files and the total counts in directories.
-<img src="http://peruukki.github.com/Anglicisms/images/screenshot-count-words.png" alt="CountWords screenshot"></p></li>
-<li><p>FilterUniqueWords.rb: Filter out different forms of a word to obtain a list of unique words.
-<img src="http://peruukki.github.com/Anglicisms/images/screenshot-filter-unique.png" alt="FilterUniqueWords screenshot"></p></li>
-<li><p>FindOccurrences.rb: Show the occurrences of a word in their contexts in text files.
-<img src="http://peruukki.github.com/Anglicisms/images/screenshot-find-occurrences.png" alt="FindOccurrences screenshot"></p></li>
-</ul>
+<h2>
+<a name="classifying-words" class="anchor" href="#classifying-words"><span class="octicon octicon-link"></span></a>Classifying words</h2>
+
+<h3>
+<a name="classifyinterestingwordsrb" class="anchor" href="#classifyinterestingwordsrb"><span class="octicon octicon-link"></span></a>ClassifyInterestingWords.rb</h3>
+
+<p><img src="http://peruukki.github.com/Anglicisms/images/screenshot-classify-interesting.png" alt="ClassifyInterestingWords screenshot"></p>
+
+<p>Usage: <code>ruby ClassifyInterestingWords.rb &lt;directory1&gt; [&lt;directory2&gt; ...]</code></p>
+
+<p>Example: <code>ruby ClassifyInterestingWords.rb corpus-example/25stanley_Montreal</code></p>
+
+<p>Output: <code>words.maybe</code> <code>words.no</code> <code>words.yes</code></p>
+
+<p>Allows you to classify words based on whether they are interesting for further analysis. The script looks for text files with the <code>.txt</code> extension in the given directories, and asks you to classify each word in those files. It then puts each word into file <code>words.yes</code>, <code>words.maybe</code> or <code>words.no</code> in the current directory, depending on your choice. The script also creates backup files ending with <code>.bak</code>.</p>
+
+<p>The created files are used as input for the <code>ClassifyLoanWords.rb</code> script, which handles the files in <code>words.yes</code> and <code>words.maybe</code> and ignores the words in <code>words.no</code>.</p>
+
+<h3>
+<a name="classifyloanwordsrb" class="anchor" href="#classifyloanwordsrb"><span class="octicon octicon-link"></span></a>ClassifyLoanWords.rb</h3>
+
+<p><img src="http://peruukki.github.com/Anglicisms/images/screenshot-classify-loan.png" alt="ClassifyLoanWords screenshot"></p>
+
+<p>Usage: <code>ruby ClassifyLoanWords.rb &lt;directory&gt;</code></p>
+
+<p>Example: <code>ruby ClassifyLoanWords.rb .</code></p>
+
+<p>Output: <code>words.direct</code> <code>words.translated</code> <code>words.original</code></p>
+
+<p>Allows you to classify words based on what kind of loan words they are. The script goes through the words in <code>words.yes</code> and <code>words.maybe</code> files in the given directory, and asks you to classify each word as a "direct" (unmodified) loan, "translated" (modified) loan, or an "original" (not loaned) word. It then puts each word into file <code>words.direct</code>, <code>words.translated</code> or <code>words.original</code> in the current directory, depending on your choice.</p>
+
+<p>The created files are used as input for the <code>FilterUniqueWords.rb</code> script, which handles the files in <code>words.direct</code> and <code>words.translated</code> and ignores the words in <code>words.original</code>.</p>
+
+<h3>
+<a name="filteruniquewordsrb" class="anchor" href="#filteruniquewordsrb"><span class="octicon octicon-link"></span></a>FilterUniqueWords.rb</h3>
+
+<p><img src="http://peruukki.github.com/Anglicisms/images/screenshot-filter-unique.png" alt="FilterUniqueWords screenshot"></p>
+
+<p>Usage: <code>ruby FilterUniqueWords.rb &lt;directory&gt;</code></p>
+
+<p>Example: <code>ruby FilterUniqueWords.rb .</code></p>
+
+<p>Output: <code>words.direct.filtered</code> <code>words.translated.filtered</code></p>
+
+<p>Combines (filters out) different forms of a word to obtain a list of unique words. The script goes through the words in <code>words.direct</code> and <code>words.translated</code> files in the given directory, and combines the different forms (e.g. "joue" and "jouent") of each word on one line (e.g. "joue, jouent"). The results are written to files with the <code>.filtered</code> extension.</p>
+
+<h2>
+<a name="counting-words" class="anchor" href="#counting-words"><span class="octicon octicon-link"></span></a>Counting words</h2>
+
+<h3>
+<a name="countfrequenciesrb" class="anchor" href="#countfrequenciesrb"><span class="octicon octicon-link"></span></a>CountFrequencies.rb</h3>
+
+<p><img src="http://peruukki.github.com/Anglicisms/images/screenshot-count-frequencies.png" alt="CountFrequencies screenshot"></p>
+
+<p>Usage: <code>ruby CountFrequencies.rb &lt;directory1&gt; [&lt;directory2&gt; ...]</code></p>
+
+<p>Example: <code>ruby CountFrequencies.rb corpus-example/25stanley_Montreal corpus-example/LNH_Montreal</code></p>
+
+<p>Output: <code>.freq</code> file per each text file, <code>all.freq</code> for each directory</p>
+
+<p>Counts word frequencies in text files in given directories and the total word frequencies in each directory. The script looks for text files with the <code>.txt</code> extension in the given directories, and calculates word frequencies in each text file as well as in each directory. The frequencies are written into files with the <code>.freq</code> extension. The script tries its best to combine different forms of a word in its calculations.</p>
+
+<h3>
+<a name="countwordsrb" class="anchor" href="#countwordsrb"><span class="octicon octicon-link"></span></a>CountWords.rb</h3>
+
+<p><img src="http://peruukki.github.com/Anglicisms/images/screenshot-count-words.png" alt="CountWords screenshot"></p>
+
+<p>Usage: <code>ruby CountWords.rb &lt;directory1&gt; [&lt;directory2&gt; ...]</code></p>
+
+<p>Example: <code>ruby CountWords.rb corpus-example/25stanley_Montreal corpus-example/LNH_Montreal</code></p>
+
+<p>Output: Shows word counts on the terminal</p>
+
+<p>Counts the number of words in text files and the total counts in directories. The script looks for text files with the <code>.txt</code> extension in the given directories, and calculates how many words there are in each file as well as in each directory in total. Certain words with an apostrophe in them ("d'abord", "d'affilée", "d'ailleurs", "d'autres", "d'habitude", "d'ici", "d'où", and "l'un", see <code>lib/Helpers.rb</code>) are recognized as single words instead of two.</p>
+
+<h2>
+<a name="finding-words-in-their-context" class="anchor" href="#finding-words-in-their-context"><span class="octicon octicon-link"></span></a>Finding words in their context</h2>
+
+<h3>
+<a name="findoccurrencesrb" class="anchor" href="#findoccurrencesrb"><span class="octicon octicon-link"></span></a>FindOccurrences.rb</h3>
+
+<p><img src="http://peruukki.github.com/Anglicisms/images/screenshot-find-occurrences.png" alt="FindOccurrences screenshot"></p>
+
+<p>Usage: <code>ruby FindOccurrences.rb &lt;word&gt; &lt;surrounding word count&gt; &lt;directory1&gt; [&lt;directory2&gt; ...]</code></p>
+
+<p>Example: <code>ruby FindOccurrences.rb score 10 corpus-example/25stanley_Montreal</code></p>
+
+<p>Output: Shows word occurrences on the terminal</p>
+
+<p>Shows the occurrences of a word in all its contexts in the text files. The script looks for text files with the <code>.txt</code> extension in the given directories, and shows the given word and the given surrounding word amount of words preceding and following it. The script is useful for checking all the contexts in which a particular word is used.</p>
       </section>
     </div>
 
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Anglicisms maintained by <a href="https://github.com/peruukki">peruukki</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
     
+
   </body>
 </html>
