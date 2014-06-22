@@ -51,6 +51,8 @@
 
 <p>Allows you to classify words based on whether they are interesting for further analysis. The script looks for text files with the <code>.txt</code> extension in the given directories, and asks you to classify each word in those files. It then puts each word into file <code>words.yes</code>, <code>words.maybe</code> or <code>words.no</code> in the current directory, depending on your choice. The script also creates backup files ending with <code>.bak</code>.</p>
 
+<p>Press <code>q</code> anytime to quit the script.</p>
+
 <p>The created files are used as input for the <code>ClassifyLoanWords.rb</code> script, which handles the files in <code>words.yes</code> and <code>words.maybe</code> and ignores the words in <code>words.no</code>.</p>
 
 <h3>
@@ -65,6 +67,8 @@
 <p>Output: <code>words.direct</code> <code>words.translated</code> <code>words.original</code></p>
 
 <p>Allows you to classify words based on what kind of loan words they are. The script goes through the words in <code>words.yes</code> and <code>words.maybe</code> files in the given directory, and asks you to classify each word as a "direct" (unmodified) loan, "translated" (modified) loan, or an "original" (not loaned) word. It then puts each word into file <code>words.direct</code>, <code>words.translated</code> or <code>words.original</code> in the current directory, depending on your choice.</p>
+
+<p>Press <code>q</code> anytime to quit the script.</p>
 
 <p>The created files are used as input for the <code>FilterUniqueWords.rb</code> script, which handles the files in <code>words.direct</code> and <code>words.translated</code> and ignores the words in <code>words.original</code>.</p>
 
