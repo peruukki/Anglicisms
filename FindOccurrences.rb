@@ -3,9 +3,9 @@
 
 require 'io/console'
 
-CurrentDir = File.dirname(__FILE__) + '/'
-require File.expand_path(CurrentDir + 'WordClassifier')
-require File.expand_path(CurrentDir + 'Helpers')
+LibDir = File.dirname(__FILE__) + '/lib/'
+require File.expand_path(LibDir + 'WordClassifier')
+require File.expand_path(LibDir + 'Helpers')
 
 include Helpers
 

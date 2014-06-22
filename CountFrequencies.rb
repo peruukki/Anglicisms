@@ -4,9 +4,9 @@
 # into account. The files containing interesting words are read from the
 # current directory.
 
-CurrentDir = File.dirname(__FILE__) + '/'
-require File.expand_path(CurrentDir + 'WordClassifierYesNoMaybe')
-require File.expand_path(CurrentDir + 'Helpers')
+LibDir = File.dirname(__FILE__) + '/lib/'
+require File.expand_path(LibDir + 'WordClassifierYesNoMaybe')
+require File.expand_path(LibDir + 'Helpers')
 
 include Helpers
 

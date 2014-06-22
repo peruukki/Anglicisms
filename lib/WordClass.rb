@@ -1,6 +1,6 @@
 ﻿# This class represents a word class usable in scripts that classify words.
 
-require File.expand_path(CurrentDir + 'ClassificationChoice')
+require File.expand_path(LibDir + 'ClassificationChoice')
 
 class WordClass < ClassificationChoice
   attr_reader :class_name, :ignore

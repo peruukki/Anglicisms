@@ -1,8 +1,8 @@
 ﻿# This script counts the words in each text file and the total word count
 # in given directories.
 
-CurrentDir = File.dirname(__FILE__) + '/'
-require File.expand_path(CurrentDir + 'Helpers')
+LibDir = File.dirname(__FILE__) + '/lib/'
+require File.expand_path(LibDir + 'Helpers')
 
 include Helpers
 

@@ -2,13 +2,12 @@
 # It is meant to be extended by subclasses that define the word classes.
 
 require 'io/console'
-require File.expand_path(CurrentDir + 'Helpers')
-require File.expand_path(CurrentDir + 'ClassificationChoice')
+require File.expand_path(LibDir + 'Helpers')
+require File.expand_path(LibDir + 'ClassificationChoice')
 
 class WordClassifier
   include Helpers
 
-  CurrentDir = File.dirname(__FILE__) + '/'
   FileNameBody = 'words.'
 
   Back = ClassificationChoice.new('b', '(b)ack')

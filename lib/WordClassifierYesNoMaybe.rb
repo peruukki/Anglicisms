@@ -1,7 +1,7 @@
 ﻿# This class classifies words to classes that describe if the word is a loan word.
 
-require File.expand_path(CurrentDir + 'WordClassifier')
-require File.expand_path(CurrentDir + 'WordClass')
+require File.expand_path(LibDir + 'WordClassifier')
+require File.expand_path(LibDir + 'WordClass')
 
 class WordClassifierYesNoMaybe < WordClassifier
 

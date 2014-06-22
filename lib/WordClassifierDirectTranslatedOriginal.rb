@@ -1,8 +1,8 @@
 ﻿# This class classifies words to classes that describe what kind of loan word
 # the word is.
 
-require File.expand_path(CurrentDir + 'WordClassifier')
-require File.expand_path(CurrentDir + 'WordClass')
+require File.expand_path(LibDir + 'WordClassifier')
+require File.expand_path(LibDir + 'WordClass')
 
 class WordClassifierDirectTranslatedOriginal < WordClassifier
 
